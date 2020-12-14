@@ -61,11 +61,13 @@ var transposition = [
 
 var message = "i hope you are having lots of fun in trying to catch me that wasnt me on the tv show which brings up a point about me i am not afraid of the gas chamber because it will send me to paradice all the sooner because i now have enough slaves to work for me where everyone else has nothing when they reach paradice so they are afraid of death i am afraid because i know that my new life is life will be an easy one in paradice death".toLocaleUpperCase().split(' ').join('').split('');
 
+var id = 0;
 var encoded = message.map(x => {
 	if (key[x] != null)
 	{
-		return { c: x, s: key[x][start[x] != null ? start[x] : 0] }
+		return { id:id++, c: x, s: key[x][start[x] != null ? start[x] : 0] }
 	}
+	id++;
 	return '?'
 });
 
@@ -81,25 +83,62 @@ encoded.map(e => {
 					grid[x] = [];
 				}
 				grid[x][y] = e;
-				console.log({i:mapId, c:c, x:x, y:y});
+				console.log(e);
 			}
 		}
 	}
 	mapId++;
 });
 
-function makeTable(array) {
+function toColor(num) {
+    num >>>= 0;
+    var b = num & 0xFF,
+        g = (num & 0xFF00) >>> 8,
+        r = (num & 0xFF0000) >>> 16,
+        a = ( (num & 0xFF000000) >>> 24 ) / 255 ;
+    return "rgba(" + [r, g, b, a].join(",") + ")";
+}
+
+const lerpColor = function(a, b, amount) {
+    const ar = a >> 16,
+          ag = a >> 8 & 0xff,
+          ab = a & 0xff,
+
+          br = b >> 16,
+          bg = b >> 8 & 0xff,
+          bb = b & 0xff,
+
+          rr = ar + amount * (br - ar),
+          rg = ag + amount * (bg - ag),
+          rb = ab + amount * (bb - ab);
+
+    return (rr << 16) + (rg << 8) + (rb | 0);
+};
+
+function makeTable(array, encoded) {
     var table = document.createElement('table');
     for (var i = 0; i < array.length; i++) {
         var row = document.createElement('tr');
         for (var j = 0; j < array[i].length; j++) {
+			var gridCell = array[i][j];
             var cell = document.createElement('td');
-            cell.textContent = array[i][j].c;
+			console.log("id = " + gridCell.id);
+			if (gridCell.id != undefined) {
+				if (encoded) {
+					cell.style.backgroundColor = "#ff" + (gridCell.id * 2).toString(16).padStart(4, '0');
+				} else {
+					cell.style.backgroundColor = "#" + (gridCell.id * 2).toString(16).padStart(4, '0') + "ff";
+				}
+			}
             row.appendChild(cell);
+			var cent = document.createElement('center');
+            cent.textContent = encoded ? gridCell.s : gridCell.c;
+            cell.appendChild(cent);
         }
         table.appendChild(row);
     }
     return table;
 }
 
-document.getElementsByTagName('body')[0].appendChild(makeTable(grid));
+document.getElementsByTagName('body')[0].appendChild(makeTable(grid, true));
+document.getElementsByTagName('body')[0].appendChild(makeTable(grid, false));
