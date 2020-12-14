@@ -1,26 +1,31 @@
 var key = {
-	"A": ['╘','K','O','⅃','±'],
-	"B": ['□','ꟻ'],
-	"C": ['ꟼ'],
-	"D": ['ʘ','A','S'],
-	"E": ['┤','B','N','𐐒','ɔ','I'],
-	"F": ['F'],
-	"G": ['L'],
-	"H": ['+'],
-	"I": ['<','H','P','ꓘ','ʎ'],
-	"L": ['◬','Ɑ','⊥'],
-	"M": ['┴'],
-	"N": ['·','△','>','D','Y'],
-	"O": ['M','R','V','^'],
-	"P": ['▲','j'],
-	"R": ['┴','E','T','X','Z'],
-	"S": ['P','-','J','U'],
-	"T": ['■','▄','ϕ','ᴥ','ᵜ','G'],
-	"U": ['/','Ό','▣'],
-	"V": ['●'],
-	"W": ['ꝋ','W'],
-	"Y": ['├','C']
+	'A': ['╘','K','O','⅃','±'],
+	'B': ['□','ꟻ'],
+	'C': ['ꟼ'],
+	'D': ['ʘ','A','S'],
+	'E': ['┤','B','N','𐐒','ɔ','I'],
+	'F': ['F'],
+	'G': ['L'],
+	'H': ['+'],
+	'I': ['<','H','P','ꓘ','ʎ'],
+	'L': ['◬','Ɑ','⊥'],
+	'M': ['┴'],
+	'N': ['·','△','>','D','Y'],
+	'O': ['M','R','V','^'],
+	'P': ['▲','j'],
+	'R': ['┴','E','T','X','Z'],
+	'S': ['P','-','J','U'],
+	'T': ['■','▄','ϕ','ᴥ','ᵜ','G'],
+	'U': ['/','Ό','▣'],
+	'V': ['●'],
+	'W': ['ꝋ','W'],
+	'Y': ['├','C']
 };
+
+var start = {
+	'E': 5,
+	'I': 1
+}
 
 var transposition = [
 	[  0,  9, 18, 27, 36, 45, 54, 63, 72, 81, 90, 99,108,117,126,135,144],
@@ -49,5 +54,14 @@ var transposition = [
 
 transposition.flatMap(x => x).sort((a, b) => a - b).forEach(x => console.log(x))
 
-var message = "i hope you are having lots of fun in trying to catch me that wasnt me on the tv show which brings up a point about me i am not afraid of the gas chamber because it will send me to paradice all the sooner because i now have enough slaves to work for me where everyone else has nothing when they reach paradice so they are afraid of death i am afraid because i know that my new life is life will be an easy one in paradice death".toLocaleUpperCase().split(' ').join('');
+var message = "i hope you are having lots of fun in trying to catch me that wasnt me on the tv show which brings up a point about me i am not afraid of the gas chamber because it will send me to paradice all the sooner because i now have enough slaves to work for me where everyone else has nothing when they reach paradice so they are afraid of death i am afraid because i know that my new life is life will be an easy one in paradice death".toLocaleUpperCase().split(' ').join('').split('');
 
+var encoded = message.map(x => {
+	if (key[x] != null)
+	{
+		return { c: x, s: key[x][start[x] != null ? start[x] : 0] }
+	}
+	return '?'
+});
+
+console.log(encoded);
