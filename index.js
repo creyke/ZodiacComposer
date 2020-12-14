@@ -69,4 +69,21 @@ var encoded = message.map(x => {
 	return '?'
 });
 
-console.log(encoded);
+var grid = [];
+
+var mapId = 0;
+encoded.map(e => {
+	for (var x = 0; x < 17; x++) {
+		for (var y = 0; y < 20; y++) {
+			var c = parseInt(transposition[x][y]);
+			if (c === mapId) {
+				if (grid[x] == null) {
+					grid[x] = [];
+				}
+				grid[x][y] = e;
+				console.log({i:mapId, c:c, x:x, y:y});
+			}
+		}
+	}
+	mapId++;
+});
