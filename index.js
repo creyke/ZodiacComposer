@@ -75,9 +75,11 @@ var grid = [];
 
 var mapId = 0;
 encoded.map(e => {
-	for (var x = 0; x < 17; x++) {
-		for (var y = 0; y < 20; y++) {
+	for (var x = 0; x < 20; x++) {
+		for (var y = 0; y < 17; y++) {
+			//console.log("x: " + x + ", y: " + y);
 			var c = parseInt(transposition[x][y]);
+			if (c > 302) console.log(c);
 			if (c === mapId) {
 				if (grid[x] == null) {
 					grid[x] = [];
@@ -124,7 +126,7 @@ function makeTable(array, type) {
             var cell = document.createElement('td');
 			cell.width = "24px";
 			cell.height = "24px";
-			console.log("id = " + gridCell.id);
+			//console.log("id = " + gridCell.id);
 			if (gridCell.id != undefined) {
 				cell.style.backgroundColor = gridCell.id < 128
 					? "#ff" + (gridCell.id * 2).toString(16).padStart(4, '0')
