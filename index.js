@@ -29,9 +29,9 @@ var picks = {
 	'Y': 1,
 	'U': 1,
 	'A': [1,0,4],
-	'R': 1,
+	'R': [1,4],
 	'L': 1,
-	'T': 2,
+	'T': [2,0],
 	'S': 3,
 	'N': [1,1,2]
 }
@@ -41,7 +41,9 @@ var cursor = {
 	'A': 0,
 	'I': 0,
 	'O': 0,
-	'N': 0
+	'N': 0,
+	'T': 0,
+	'R': 0
 }
 
 var transposition = [
@@ -71,7 +73,7 @@ var transposition = [
 
 //transposition.flatMap(x => x).sort((a, b) => a - b).forEach(x => console.log(x))
 
-// up to ...                                      |
+// up to ...                                         |
 var message = "i hope you are having lots of fan in trying to catch me that wasnt me on the tv show which brings up a point about me i am not afraid of the gas chamber because it will send me to paradice all the sooner because i now have enough slaves to work for me where everyone else has nothing when they reach paradice so they are afraid of death i am not afraid because i know that my new life is life will be an easy one in paradice death".toLocaleUpperCase().split(' ').join('').split('');
 
 
