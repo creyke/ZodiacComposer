@@ -22,14 +22,19 @@ var key = {
 	'Y': ['├','C']
 };
 
-var start = {
+var picks = {
 	'I': 1,
 	'O': 2,
-	'E': 5,
+	'E': [5,1],
 	'Y': 1,
 	'U': 1,
-	'A': 1,
+	'A': [1,0],
 	'R': 1
+}
+
+var cursor = {
+	'A': 0,
+	'E': 0
 }
 
 var transposition = [
@@ -59,13 +64,24 @@ var transposition = [
 
 //transposition.flatMap(x => x).sort((a, b) => a - b).forEach(x => console.log(x))
 
-var message = "i hope you are having lots of fun in trying to catch me that wasnt me on the tv show which brings up a point about me i am not afraid of the gas chamber because it will send me to paradice all the sooner because i now have enough slaves to work for me where everyone else has nothing when they reach paradice so they are afraid of death i am afraid because i know that my new life is life will be an easy one in paradice death".toLocaleUpperCase().split(' ').join('').split('');
+var message = "i hope you are having lots of fun in trying to catch me that wasnt me on the tv show which brings up a point about me i am not afraid of the gas chamber because it will send me to paradice all the sooner because i now have enough slaves to work for me where everyone else has nothing when they reach paradice so they are afraid of death i am not afraid because i know that my new life is life will be an easy one in paradice death".toLocaleUpperCase().split(' ').join('').split('');
+
+function getAndIncreaseCursor(c) {
+	var cur = cursor[c];
+	cursor[c] = cur + 1 > picks[c].length - 1 ? 0 : cur + 1;
+	return cur;
+}
 
 var id = 0;
 var encoded = message.map(x => {
 	if (key[x] != null)
 	{
-		return { id:id++, c: x, s: key[x][start[x] != null ? start[x] : 0] }
+		return { id:id++, c: x, s: key[x][picks[x] != null
+			? (picks[x].constructor === Array
+				? picks[x][getAndIncreaseCursor(x)]
+				: picks[x])
+			: 0
+		] }
 	}
 	id++;
 	return '?'
