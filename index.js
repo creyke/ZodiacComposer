@@ -115,24 +115,26 @@ const lerpColor = function(a, b, amount) {
     return (rr << 16) + (rg << 8) + (rb | 0);
 };
 
-function makeTable(array, encoded) {
+function makeTable(array, type) {
     var table = document.createElement('table');
     for (var i = 0; i < array.length; i++) {
         var row = document.createElement('tr');
         for (var j = 0; j < array[i].length; j++) {
 			var gridCell = array[i][j];
             var cell = document.createElement('td');
+			cell.width = "24px";
+			cell.height = "24px";
 			console.log("id = " + gridCell.id);
 			if (gridCell.id != undefined) {
-				if (encoded) {
-					cell.style.backgroundColor = "#ff" + (gridCell.id * 2).toString(16).padStart(4, '0');
-				} else {
-					cell.style.backgroundColor = "#" + (gridCell.id * 2).toString(16).padStart(4, '0') + "ff";
-				}
+				cell.style.backgroundColor = gridCell.id < 128
+					? "#ff" + (gridCell.id * 2).toString(16).padStart(4, '0')
+					: gridCell.id < 256
+						? "#" + ((gridCell.id - 128) * 2).toString(16).padStart(4, '0') + "ffff"
+						: "#ffff" + ((gridCell.id - 256) * 8).toString(16).padStart(2, '0') + "";
 			}
             row.appendChild(cell);
 			var cent = document.createElement('center');
-            cent.textContent = encoded ? gridCell.s : gridCell.c;
+            cent.textContent = type == 0 ? gridCell.s : type == 1 ? gridCell.c : gridCell.id;
             cell.appendChild(cent);
         }
         table.appendChild(row);
@@ -140,5 +142,8 @@ function makeTable(array, encoded) {
     return table;
 }
 
-document.getElementsByTagName('body')[0].appendChild(makeTable(grid, true));
-document.getElementsByTagName('body')[0].appendChild(makeTable(grid, false));
+document.getElementsByTagName('body')[0].appendChild(makeTable(grid, 0));
+document.getElementsByTagName('body')[0].appendChild(document.createElement('br'));
+document.getElementsByTagName('body')[0].appendChild(makeTable(grid, 1));
+document.getElementsByTagName('body')[0].appendChild(document.createElement('br'));
+document.getElementsByTagName('body')[0].appendChild(makeTable(grid, 2));
