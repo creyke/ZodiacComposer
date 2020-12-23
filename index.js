@@ -1,3 +1,5 @@
+var target = 60;
+
 var key = {
 	'A': ['╘','K','O','⅃','±'],
 	'B': ['□','ꟻ'],
@@ -24,16 +26,16 @@ var key = {
 
 var picks = {
 	'I': [1,3,0,2],
-	'O': [0,2,1,2],
-	'E': [5,1],
+	'O': [0,2,1,2,0,3],
+	'E': [5,1,5,3,0],
 	'Y': [1,0],
 	'U': 1,
 	'A': [1,0,4,2,3,2],
 	'R': [1,4],
-	'L': 1,
-	'T': [2,0,2,5,2,1],
+	'L': [1,2],
+	'T': [2,0,2,5,5,1,0,2,2],
 	'S': [3,0],
-	'N': [1,1,2,2,3],
+	'N': [1,1,2,2,3,3],
 	'W': 1
 }
 
@@ -46,7 +48,8 @@ var cursor = {
 	'T': 0,
 	'R': 0,
 	'Y': 0,
-	'S': 0
+	'S': 0,
+	'L': 0
 }
 
 var transposition = [
@@ -157,7 +160,12 @@ function makeTable(array, type) {
 			cell.width = "24px";
 			cell.height = "24px";
 			//console.log("id = " + gridCell.id);
-			if (gridCell.id != undefined) {
+			if (gridCell.id <= target-1) {}
+			else if (gridCell.id == target)
+			{
+				cell.style.backgroundColor = "#00ff00";
+			}
+			else if (gridCell.id != undefined) {
 				cell.style.backgroundColor = gridCell.id < 128
 					? "#ff" + (gridCell.id * 2).toString(16).padStart(4, '0')
 					: gridCell.id < 256
