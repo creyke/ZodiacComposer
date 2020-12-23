@@ -1,4 +1,4 @@
-var target = 76;
+var target = 85;
 
 var key = {
 	'A': ['╘','K','O','⅃','±'],
@@ -25,19 +25,20 @@ var key = {
 };
 
 var picks = {
-	'I': [1,3,0,2,3,2],
-	'O': [0,2,1,2,0,3,2,1],
+	'I': [1,3,0,2,3,2,3],
+	'O': [0,2,1,2,0,3,2,1,1],
 	'E': [5,1,5,3,0],
 	'Y': [1,0],
 	'U': [1,0],
-	'A': [1,0,4,2,3,2],
+	'A': [1,0,4,2,3,2,1,1],
 	'R': [1,4,4],
 	'L': [1,2],
-	'T': [2,0,2,5,5,1,0,2,2],
+	'T': [2,0,2,5,5,1,0,2,2,0],
 	'S': [3,0,2],
-	'N': [1,1,2,2,3,3,4],
+	'N': [1,1,2,2,3,3,4,0],
 	'W': [1,1,0],
-	'B': 1
+	'B': [1,1],
+	'P': [0,0,1]
 }
 
 var cursor = {
@@ -52,7 +53,9 @@ var cursor = {
 	'Y': 0,
 	'S': 0,
 	'L': 0,
-	'U': 0
+	'U': 0,
+	'P': 0,
+	'B': 0
 }
 
 var transposition = [
@@ -192,7 +195,7 @@ for (var i in encoded) {
 	}
 }
 var div = document.createElement('div');
-div.textContent = "" + message[target] + " " + targetInstance + " " + (key[message[target]].length == 1 ? "Unique" : "Multiple");
+div.textContent = "" + message[target] + " " + targetInstance + "(" + picks[message[target]].length + ")" + " " + (key[message[target]].length == 1 ? "Unique" : "Multiple");
 document.getElementsByTagName('body')[0].appendChild(div);
 
 document.getElementsByTagName('body')[0].appendChild(makeTable(grid, 0));
