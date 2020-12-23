@@ -1,4 +1,4 @@
-var target = 68;
+var target = 76;
 
 var key = {
 	'A': ['╘','K','O','⅃','±'],
@@ -25,18 +25,19 @@ var key = {
 };
 
 var picks = {
-	'I': [1,3,0,2,3],
-	'O': [0,2,1,2,0,3,2],
+	'I': [1,3,0,2,3,2],
+	'O': [0,2,1,2,0,3,2,1],
 	'E': [5,1,5,3,0],
 	'Y': [1,0],
-	'U': 1,
+	'U': [1,0],
 	'A': [1,0,4,2,3,2],
-	'R': [1,4],
+	'R': [1,4,4],
 	'L': [1,2],
 	'T': [2,0,2,5,5,1,0,2,2],
 	'S': [3,0,2],
-	'N': [1,1,2,2,3,3],
-	'W': [1,1,0]
+	'N': [1,1,2,2,3,3,4],
+	'W': [1,1,0],
+	'B': 1
 }
 
 var cursor = {
@@ -50,7 +51,8 @@ var cursor = {
 	'W': 0,
 	'Y': 0,
 	'S': 0,
-	'L': 0
+	'L': 0,
+	'U': 0
 }
 
 var transposition = [
@@ -81,7 +83,7 @@ var transposition = [
 //transposition.flatMap(x => x).sort((a, b) => a - b).forEach(x => console.log(x))
 
 // up to ...                                         |
-var message = "i hope you are having lots of fan in trying to catch me that wasnt me on the tv show which brings up a point about me i am not afraid of the gas chamber because it will send me to paradice all the sooner because i now have enough slaves to work for me where everyone else has nothing when they reach paradice so they are afraid of death i am not afraid because i know that my new life is life will be an easy one in paradice death".toLocaleUpperCase().split(' ').join('').split('');
+var message = "i hope you are having lots of fan in trying to catch me that wasnt me on the tv show which bringo up a point about me i am not afraid of the gas chamber because it will send me to paradice all the sooner because i now have enough slaves to work for me where everyone else has nothing when they reach paradice so they are afraid of death i am not afraid because i know that my new life is life will be an easy one in paradice death".toLocaleUpperCase().split(' ').join('').split('');
 
 
 function getAndIncreaseCursor(c) {
