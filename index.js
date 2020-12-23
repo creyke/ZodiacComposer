@@ -197,8 +197,20 @@ for (var i in encoded) {
 	}
 }
 var div = document.createElement('div');
-div.textContent = "" + message[target] + " " + targetInstance + "(" + (picks[message[target]] == undefined ? "N/A" : picks[message[target]].length) + ")" + " " + (key[message[target]].length == 1 ? "Unique" : "Multiple");
+div.textContent = /*"" + message[target] + " " + */targetInstance + "(" + (picks[message[target]] == undefined ? "N/A" : picks[message[target]].length) + ")" + " " + (key[message[target]].length == 1 ? "Unique" : "Multiple");
 document.getElementsByTagName('body')[0].appendChild(div);
+
+var divMsgB = document.createElement('div');
+divMsgB.textContent = message.slice(target - 10, target).join('');
+document.getElementsByTagName('body')[0].appendChild(divMsgB);
+
+var divMsg = document.createElement('div');
+divMsg.textContent = message.slice(target, target + 1).join('');
+document.getElementsByTagName('body')[0].appendChild(divMsg);
+
+var divMsgA = document.createElement('div');
+divMsgA.textContent = message.slice(target + 1, target + 10).join('');
+document.getElementsByTagName('body')[0].appendChild(divMsgA);
 
 document.getElementsByTagName('body')[0].appendChild(makeTable(grid, 0));
 document.getElementsByTagName('body')[0].appendChild(document.createElement('br'));
