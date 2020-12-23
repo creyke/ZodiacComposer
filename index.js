@@ -1,4 +1,4 @@
-var target = 60;
+var target = 68;
 
 var key = {
 	'A': ['╘','K','O','⅃','±'],
@@ -25,8 +25,8 @@ var key = {
 };
 
 var picks = {
-	'I': [1,3,0,2],
-	'O': [0,2,1,2,0,3],
+	'I': [1,3,0,2,3],
+	'O': [0,2,1,2,0,3,2],
 	'E': [5,1,5,3,0],
 	'Y': [1,0],
 	'U': 1,
@@ -34,9 +34,9 @@ var picks = {
 	'R': [1,4],
 	'L': [1,2],
 	'T': [2,0,2,5,5,1,0,2,2],
-	'S': [3,0],
+	'S': [3,0,2],
 	'N': [1,1,2,2,3,3],
-	'W': 1
+	'W': [1,1,0]
 }
 
 var cursor = {
@@ -47,6 +47,7 @@ var cursor = {
 	'N': 0,
 	'T': 0,
 	'R': 0,
+	'W': 0,
 	'Y': 0,
 	'S': 0,
 	'L': 0
@@ -112,13 +113,13 @@ encoded.map(e => {
 		for (var y = 0; y < 17; y++) {
 			//console.log("x: " + x + ", y: " + y);
 			var c = parseInt(transposition[x][y]);
-			if (c > 302) console.log(c);
+			//if (c > 302) console.log(c);
 			if (c === mapId) {
 				if (grid[x] == null) {
 					grid[x] = [];
 				}
 				grid[x][y] = e;
-				console.log(e);
+				//console.log(e);
 			}
 		}
 	}
@@ -181,6 +182,16 @@ function makeTable(array, type) {
     }
     return table;
 }
+
+var targetInstance = 0;
+for (var i in encoded) {
+	if (i <= target && message[i] == message[target]) {
+		targetInstance++;
+	}
+}
+var div = document.createElement('div');
+div.textContent = "" + message[target] + " " + targetInstance + " " + (key[message[target]].length == 1 ? "Unique" : "Multiple");
+document.getElementsByTagName('body')[0].appendChild(div);
 
 document.getElementsByTagName('body')[0].appendChild(makeTable(grid, 0));
 document.getElementsByTagName('body')[0].appendChild(document.createElement('br'));
