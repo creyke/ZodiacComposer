@@ -1,4 +1,4 @@
-var target = 153;
+var target = 169;
 
 var key = {
 	'A': ['╘','K','O','⅃','±'],
@@ -26,18 +26,18 @@ var key = {
 
 var picks = {
 	'I': [1,3,0,2,3,2,3,0,1,4,4],
-	'O': [0,2,1,2,0,3,2,1,1,1,3,0,3],
-	'E': [5,1,5,3,0,5,1,4,1,2,4,2,4,0],
+	'O': [0,2,1,2,0,3,2,1,1,1,3,0,3,1,1,0],
+	'E': [5,1,5,3,0,5,1,4,1,2,4,2,4,0,5,2,3],
 	'Y': [1,0],
-	'U': [1,0,2],
-	'A': [1,0,4,2,3,2,1,1,4,2,0,1,3,4,2,0,4,3],
-	'R': [1,4,4,0,0,3],
+	'U': [1,0,2,0],
+	'A': [1,0,4,2,3,2,1,1,4,2,0,1,3,4,2,0,4,3,4],
+	'R': [1,4,4,0,0,3,1],
 	'L': [1,0,2,1,1,1],
 	'T': [2,0,2,5,5,1,0,2,2,0,0,1,4,5,3,5],
-	'S': [3,0,2,2,3,1],
-	'N': [1,1,2,2,3,3,4,0,1,4],
-	'W': [1,1,0,0],
-	'B': [1,0,0,1],
+	'S': [3,0,2,2,3,1,1,2],
+	'N': [1,1,2,2,3,3,4,0,1,4,2],
+	'W': [1,1,0,0,0],
+	'B': [1,0,0,1,1],
 	'P': [0,0,1,1],
 	'D': [2,1,0]
 }
@@ -88,7 +88,7 @@ var transposition = [
 //transposition.flatMap(x => x).sort((a, b) => a - b).forEach(x => console.log(x))
 
 // up to ...                                         |
-var message = "i hope you are having lots of fan in trying to catch me that wasnt me on the tv show which bringo up a point about me i am not afraid of the gas chamber becaase it will send me to paradlce all the sooner because i now have enough slaves to work for me where everyone else has nothing when they reach paradice so they are afraid of death i am not afraid because i know that my new life is life will be an easy one in paradice death".toLocaleUpperCase().split(' ').join('').split('');
+var message = "i hope you are having lots of fan in trying to catch me that wasnt me on the tv show which bringo up a point about me i am not afraid of the gas chamber becaase it will send me to paradlce all the soohvr because e now have enough slaves to work for me where everyone else has nothing when they reach paradice so they are afraid of death i am not afraid because i know that my new life is life will be an easy one in paradice death".toLocaleUpperCase().split(' ').join('').split('');
 
 
 function getAndIncreaseCursor(c) {
