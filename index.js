@@ -30,7 +30,7 @@ var picks = {
 	'E': [5,1,5,3,0,5,1,4,1,2,4,2,4,0,5,2,3,5,5,4,4,5,1,5,4,4,1,1,4,3,1,1,2,0,4,1,1,5,1,1,4,2,5],
 	'Y': [1,0,1,0,1,1,1],
 	'U': [1,0,2,0,2,0],
-	'A': [1,0,4,2,3,2,1,1,4,2,0,1,3,4,2,0,4,3,4,3,0,4,2,3,4,2,4,1,0,1,2,2,0,0,2,0,2,4,1], // check all L and corner again
+	'A': [1,0,4,2,3,2,1,1,4,2,0,1,3,4,2,0,4,3,4,3,0,4,2,3,4,2,4,1,0,1,2,2,3,3,2,0,2,4,1],
 	'R': [1,4,4,0,0,3,1,1,4,2,2,0,3,2,0,2,4],
 	'L': [1,0,2,1,1,1,2,2,0,1,0,2],
 	'T': [2,0,2,5,5,1,0,2,2,0,0,1,4,5,3,5,5,2,4,5,2,3,2,0,4],
@@ -168,7 +168,7 @@ function makeTable(array, type) {
 			cell.width = "24px";
 			cell.height = "24px";
 			//console.log("id = " + gridCell.id);
-			if (gridCell.id > target) {}
+			/*if (gridCell.id > target) {}
 			else if (gridCell.id == target)
 			{
 				cell.style.backgroundColor = "#00ff00";
@@ -179,7 +179,7 @@ function makeTable(array, type) {
 					: gridCell.id < 256
 						? "#" + ((gridCell.id - 128) * 2).toString(16).padStart(4, '0') + "ffff"
 						: "#ffff" + ((gridCell.id - 256) * 8).toString(16).padStart(2, '0') + "";
-			}
+			}*/
             row.appendChild(cell);
 			var cent = document.createElement('center');
             cent.textContent = type == 0 ? gridCell.s : type == 1 ? gridCell.c : gridCell.id;
